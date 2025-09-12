@@ -5,55 +5,55 @@ import 'swiper/css/bundle';
 
 const slides = [
     {
-        name: 'The Avenger',
+        title: 'The Avenger',
         release: 2012,
         from: 'America',
         img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/c91f906b-5881-47b1-89e4-e4a69c1961a7',
     },
     {
-        name: '릴리슈슈의 모든 것',
+        title: '릴리슈슈의 모든 것',
         release: 2012,
         from: 'America',
         img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/5bc859f0-db4f-4ab4-8f5f-e55977c33eb1',
     },
     {
-        name: 'K-POP Demon Hunters',
+        title: 'K-POP Demon Hunters',
         release: 2012,
         from: 'America',
         img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/d239a63a-a0f8-4213-82dc-bb8d3f0806db',
     },
     {
-        name: '폭싹 속았수다',
+        title: '폭싹 속았수다',
         release: 2012,
         from: 'America',
         img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/9c0637aa-b440-4aef-93f3-ea20cf19f42c',
     },
     {
-        name: 'Harry Potter',
+        title: 'Harry Potter',
         release: 2012,
         from: 'America',
         img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/6a90b5ba-9f3e-4cb3-a8e2-3ae19b2aa443',
     },
     {
-        name: 'About Time',
+        title: 'About Time',
         release: 2012,
         from: 'America',
         img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/fe05145f-c9ab-457f-a91b-92a4c1bd633c',
     },
     {
-        name: 'Heart Break High',
+        title: 'Heart Break High',
         release: 2012,
         from: 'America',
         img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/1158c3d4-81d5-4dfc-bb42-863f357ecdb5',
     },
     {
-        name: 'Billy Elliot',
+        title: 'Billy Elliot',
         release: 2012,
         from: 'America',
         img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/c8ef23d2-37ee-4473-ad86-d9c9911be3bb',
     },
     {
-        name: 'Frozen',
+        title: 'Frozen',
         release: 2012,
         from: 'America',
         img: 'https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/29eff421-1087-4b51-92a2-a7f204098187',
@@ -157,11 +157,11 @@ const OttGenre = () => {
                 </h3>
                 <div className="swiper">
                     <div className="swiper-wrapper">
-                        {slides.map(({ name, img, from, release }, idx) => (
+                        {slides.map(({ title, img, from, release }, idx) => (
                             <div className="swiper-slide" key={idx}>
-                                <img src={img} alt={name} />
+                                <img src={img} alt={title} />
                                 <p>
-                                    {name} <strong>({release})</strong>
+                                    {title} <strong>({release})</strong>
                                 </p>
                             </div>
                         ))}

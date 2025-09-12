@@ -1,74 +1,14 @@
 // IntroSlider.jsx
 import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IoArrowBackOutline, IoArrowForwardOutline } from 'react-icons/io5';
 import './style.scss';
-
-const slides = [
-    {
-        title: 'BILLY ELLIOT',
-        description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum...',
-        image: 'https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg',
-        release: 2019,
-        genre: 'Horror/Mystery',
-        duration: '2h 50m',
-        rating: '8.0',
-    },
-    {
-        title: 'BILLY ELLIOT',
-        description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum...Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum...Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum...',
-        image: 'https://i.redd.it/tc0aqpv92pn21.jpg',
-        release: 2019,
-        genre: 'Horror/Mystery',
-        duration: '2h 50m',
-        rating: '8.0',
-    },
-    {
-        title: 'The Gate Keeper',
-        description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum...',
-        image: 'https://wharferj.files.wordpress.com/2015/11/bio_north.jpg',
-        release: 2019,
-        genre: 'Horror/Mystery',
-        duration: '2h 50m',
-        rating: '8.0',
-    },
-    {
-        title: 'Last Trace Of Us',
-        description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum...',
-        image: 'https://images7.alphacoders.com/878/878663.jpg',
-        release: 2019,
-        genre: 'Horror/Mystery',
-        duration: '2h 50m',
-        rating: '8.0',
-    },
-    {
-        title: 'Urban Decay',
-        description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum...',
-        image: 'https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg',
-        release: 2019,
-        genre: 'Horror/Mystery',
-        duration: '2h 50m',
-        rating: '8.0',
-    },
-    {
-        title: 'The Migration',
-        description:
-            'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum...',
-        image: 'https://da.se/app/uploads/2015/09/simon-december1994.jpg',
-        release: 2019,
-        genre: 'Horror/Mystery',
-        duration: '2h 50m',
-        rating: '8.0',
-    },
-];
+import ottMovieData from '../../api/ottMovieData';
 
 const OttMainVisual = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const sliderRef = useRef(null);
+    const navigate = useNavigate();
 
     const handleClick = (direction) => {
         const slider = sliderRef.current;
@@ -82,41 +22,46 @@ const OttMainVisual = () => {
         }
     };
 
+    const onClick = (video) => {
+        navigate('/ottDetail', { state: video });
+    };
     return (
         <main className="intro-slider">
-            {/* {slides.map((slide, index) => (
+            {/* {slides.map((video, index) => (
                 <div
                     key={index}
-                    className="background-slide"
+                    className="background-video"
                     style={{ backgroundImage: `url(${slides[activeIndex].image})` }}
                 />
             ))} */}
 
             <ul className="slider" ref={sliderRef}>
-                {slides.map((slide, index) => (
+                {ottMovieData.slice(0, 5).map((video, index) => (
                     <li
                         className="item"
                         key={index}
-                        style={{ backgroundImage: `url(${slide.image})` }}
+                        style={{ backgroundImage: `url(${video.img})` }}
                     >
                         <div className="content">
-                            <h2 className="title">{slide.title}</h2>
+                            <h2 className="title">{video.title}</h2>
                             <div className="texts">
                                 <ul className="inform">
-                                    <li>{slide.release}</li>
-                                    <li>{slide.genre}</li>
-                                    <li>{slide.duration}</li>
+                                    <li>{video.release}</li>
+                                    <li>{video.genre}</li>
+                                    <li>{video.duration}</li>
                                     <li>
-                                        <strong>★ {slide.rating}</strong>
+                                        <strong>★ {video.rating}</strong>
                                     </li>
                                 </ul>
-                                <p className="description">{slide.description}</p>
-                                <button>MORE</button>
+                                <p className="description">{video.description}</p>
+                                <button onClick={() => onClick(video)}>MORE</button>
                             </div>
                         </div>
+                        <button onClick={() => onClick(video)}>MORE</button>
                     </li>
                 ))}
             </ul>
+
             <nav className="navBtn">
                 {/* <IoArrowBackOutline className="btn prev" onClick={() => handleClick('prev')} /> */}
                 <IoArrowForwardOutline className="btn next" onClick={() => handleClick('next')} />
